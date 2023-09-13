@@ -158,6 +158,13 @@ parser.add_argument(
 	help="check pre process or not"
 )
 
+parser.add_argument(
+	"--multi_controlnet_or_not",
+	default=True,
+	action = "store_true",
+	help="check single controlnet or not"
+)
+
 parser.add_argument("-c",
 	"--controlnet_type",
 	nargs='+',
@@ -196,6 +203,7 @@ info_text = f"Script Version : 1.1 \
 				--single_base_model_file: {ap.single_base_model_file} \
 				--controlnet_type: {ap.controlnet_type} \
 				--pre_process: {ap.pre_process} \
+                                --multi_controlnet_or_not: {ap.multi_controlnet_or_not} \
 				--net_scale: {ap.net_scale}"
 
 print(info_text)
@@ -213,7 +221,7 @@ x_3 = ap.controlnet_type[0]
 
 controlnet_type = x_3.split(";")
 
-if len(ap.net_scale)>1:
+if multi_controlnet_or_not:
 	x_4 = ap.net_scale[0]
 	x_5 = x_4.split(";")
 	net_scale = []
