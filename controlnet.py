@@ -213,17 +213,6 @@ x_3 = ap.controlnet_type[0]
 
 controlnet_type = x_3.split(";")
 
-x_4 = ap.net_scale[0]
-
-x_5 = x_4.split(";")
-
-net_scale = []
-
-for ns in (x_5):
-
-	net_scale.append(np.float64(ns))
-
-
 def canny(image_path):
 
 	image = load_image(image_path)
