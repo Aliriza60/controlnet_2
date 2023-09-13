@@ -213,6 +213,13 @@ x_3 = ap.controlnet_type[0]
 
 controlnet_type = x_3.split(";")
 
+if len(ap.net_scale)>1:
+	x_4 = ap.net_scale[0]
+	x_5 = x_4.split(";")
+	net_scale = []
+	for ns in (x_5):
+		net_scale.append(np.float64(ns))
+
 def canny(image_path):
 
 	image = load_image(image_path)
@@ -792,7 +799,7 @@ with autocast("cuda"), torch.inference_mode():
 			num_images_per_prompt=ap.samples,
 			num_inference_steps=ap.inference_steps,
 			guidance_scale = ap.guidance_scale,
-			controlnet_conditioning_scale = ap.net_scale,).images
+			controlnet_conditioning_scale = net_scale,).images
 
 os.makedirs(ap.output, exist_ok=True)
 for i, image in enumerate(images):
